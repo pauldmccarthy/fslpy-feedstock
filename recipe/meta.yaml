@@ -47,6 +47,7 @@ requirements:
     - nibabel >=2.4
     - h5py >=2.9
     - dill
+    - backports.zstd
   run_constrained:
     - indexed_gzip >=0.7
     - wxpython >=4
@@ -54,7 +55,6 @@ requirements:
     - rtree >=0.8.3
     - dcm2niix >=1.0.20171215
     - pillow >=3.2.0
-    - backports.zstd  # [py<314]
 
 test:
   source_files:
@@ -72,7 +72,6 @@ test:
     - dcm2niix >=1.0.20171215
     - pillow >=3.2.0
     - python {{ python_min }}
-    - backports.zstd  # [py<314]
   commands:
     - pytest -x -v --cov=fsl -m "not (wxtest or unixtest or longtest or fsltest or noroottest or dicomtest or mrstest)" -k "not (fslsub or fslstats)" fsl/tests
 
