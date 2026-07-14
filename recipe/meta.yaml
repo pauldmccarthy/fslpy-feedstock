@@ -1,6 +1,6 @@
 {% set name = "fslpy" %}
-{% set version = "3.27.0" %}
-{% set sha256 = "128b289da933ba0f59950ef4cdf742288ee4ae936f5936e08703de8eaa95aef5" %}
+{% set version = "3.28.0" %}
+{% set sha256 = "7a4a7753c3fd9b1a9276f087f81bd8d0565d634bd017f7ee895263f2f28f216c" %}
 
 package:
   name: {{ name|lower }}
@@ -54,7 +54,7 @@ requirements:
     - rtree >=0.8.3
     - dcm2niix >=1.0.20171215
     - pillow >=3.2.0
-    - pyzstd
+    - backports.zstd  # [py<314]
 
 test:
   source_files:
@@ -71,7 +71,6 @@ test:
     - dcm2niix >=1.0.20171215
     - pillow >=3.2.0
     - python {{ python_min }}
-    - pyzstd
   commands:
     - pytest -x -v --cov=fsl -m "not (wxtest or unixtest or longtest or fsltest or noroottest or dicomtest or mrstest)" -k "not (fslsub or fslstats)" fsl/tests
 
