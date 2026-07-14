@@ -4,7 +4,7 @@ context:
  name:       fslpy
  version:    3.28.1
  sha256:     40a005df4335b7845ab646761b9c7389de99e604ecb778fb1831ee4de78c25d6
- python_min: 3.11
+ python_min: "3.11"
 
 package:
   name: ${{ name|lower }}
