@@ -9,16 +9,15 @@ Package license: Apache-2.0
 
 Summary: The FSL Python library
 
-Development: https://git.fmrib.ox.ac.uk/fsl/fslpy/
-
 Current build status
 ====================
 
 
-<table><tr><td>All platforms:</td>
+<table><tr>
+    <td>All platforms:</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3889&branchName=main">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/fslpy-feedstock?branchName=main">
+      <a href="https://github.com/conda-forge/fslpy-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/fslpy-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
       </a>
     </td>
   </tr>

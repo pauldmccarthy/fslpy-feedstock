@@ -1,0 +1,94 @@
+schema_version: 1
+
+context:
+ name:       fslpy
+ version:    3.28.1
+ sha256:     40a005df4335b7845ab646761b9c7389de99e604ecb778fb1831ee4de78c25d6
+ python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: ${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  python:
+    entry_points:
+      - Text2Vest      = fsl.scripts.Text2Vest:main
+      - Vest2Text      = fsl.scripts.Vest2Text:main
+      - atlasq         = fsl.scripts.atlasq:main
+      - atlasquery     = fsl.scripts.atlasq:atlasquery_emulation
+      - fsl_abspath    = fsl.scripts.fsl_abspath:main
+      - fsl_apply_x5   = fsl.scripts.fsl_apply_x5:main
+      - fsl_convert_x5 = fsl.scripts.fsl_convert_x5:main
+      - fsl_ents       = fsl.scripts.fsl_ents:main
+      - fslchfiletype  = fsl.scripts.fslchfiletype:main
+      - imcp           = fsl.scripts.imcp:main
+      - imglob         = fsl.scripts.imglob:main
+      - imln           = fsl.scripts.imln:main
+      - immv           = fsl.scripts.immv:main
+      - imrm           = fsl.scripts.imrm:main
+      - imtest         = fsl.scripts.imtest:main
+      - remove_ext     = fsl.scripts.remove_ext:main
+      - resample_image = fsl.scripts.resample_image:main
+      - tmpnam         = fsl.scripts.tmpnam:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools-scm
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.18
+    - scipy >=0.18
+    - nibabel >=5.4
+    - h5py >=2.9
+    - dill
+    - backports.zstd
+  run_constraints:
+    - indexed_gzip >=0.7
+    - wxpython >=4
+    - trimesh >=2.37.29
+    - rtree >=0.8.3
+    - dcm2niix >=1.0.20171215
+    - pillow >=3.2.0
+
+tests:
+  - files:
+      source:
+        - pyproject.toml
+        - conftest.py
+        - fsl/tests
+    requirements:
+      run:
+        - mock
+        - coverage
+        - pytest
+        - pytest-cov
+        - trimesh >=2.37.29
+        - rtree >=0.8.3
+        - indexed_gzip >=0.7
+        - dcm2niix >=1.0.20171215
+        - pillow >=3.2.0
+        - python ${{ python_min }}.*
+    script:
+      - pytest -x -v --cov=fsl -m "not (wxtest or unixtest or longtest or fsltest or noroottest or dicomtest or mrstest)" -k "not (fslsub or fslstats)" fsl/tests
+
+
+about:
+  homepage: https://git.fmrib.ox.ac.uk/fsl/fslpy/
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: The FSL Python library
+
+extra:
+  recipe-maintainers:
+    - pauldmccarthy
