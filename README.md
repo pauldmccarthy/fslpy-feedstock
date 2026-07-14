@@ -9,8 +9,6 @@ Package license: Apache-2.0
 
 Summary: The FSL Python library
 
-Development: https://git.fmrib.ox.ac.uk/fsl/fslpy/
-
 Current build status
 ====================
 
