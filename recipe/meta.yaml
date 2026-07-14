@@ -13,6 +13,7 @@ source:
 build:
   noarch: python
   number: 0
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   entry_points:
     - Text2Vest      = fsl.scripts.Text2Vest:main
@@ -44,7 +45,7 @@ requirements:
     - python >={{ python_min }}
     - numpy >=1.18
     - scipy >=0.18
-    - nibabel >=2.4
+    - nibabel >=5.4
     - h5py >=2.9
     - dill
     - backports.zstd
