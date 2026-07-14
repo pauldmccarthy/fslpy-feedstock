@@ -58,6 +58,7 @@ requirements:
 
 test:
   source_files:
+    - pyproject.toml
     - conftest.py
     - fsl/tests
   requires:
