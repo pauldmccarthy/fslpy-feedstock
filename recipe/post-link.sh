@@ -7,6 +7,7 @@ if  [ -e ${FSLDIR}/share/fsl/sbin/createFSLWrapper ]; then
     fsl_abspath   \
     fsl_ents      \
     fslchfiletype \
+    fslchpixdim   \
     imcp          \
     imglob        \
     imln          \
